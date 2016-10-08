@@ -1,0 +1,10 @@
+1.通过top命令找到哪个进程在消耗cpu
+
+2.将该进程下的线程列出来，排查是哪个线程在消耗
+  ps -mp PID -o THREAD,tid,time | sort -rn
+
+3.将消耗cpu的线程号提前出来，转换成16进制
+  printf "%x\n" TID
+  
+4.打印该线程的堆栈信息
+  jstack PID | grep TID  -A 30
